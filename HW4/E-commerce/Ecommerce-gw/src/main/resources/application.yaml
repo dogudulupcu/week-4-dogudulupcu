@@ -1,0 +1,24 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: ECOMMERCE-GW
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://ORDERSERVICE
+          predicates:
+            - Path=/api/v1/orders/**
+        - id: invoice-service
+          uri: lb://INVOICESERVICE
+          predicates:
+            - Path=/api/v1/invoices/**
+        - id: customer-service
+          uri: lb://CUSTOMERSERVICE
+          predicates:
+            - Path=/api/**
+
+
+
+
